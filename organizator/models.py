@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class Organism(models.Model):
@@ -56,3 +57,15 @@ class PricingPlan(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Ticket(models.Model):
+    id_ticket = models.AutoField(primary_key=True)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    plan = models.ForeignKey('PricingPlan',to_field='id_plan', on_delete=models.CASCADE)
+    availability = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"Ticket #{self.id_ticket}"
+    
+
+ 
